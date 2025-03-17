@@ -30,7 +30,7 @@ public class EnergyAwareSchedulerr {
             // Set frequency dynamically based on burst time
             double frequency = determineFrequency(process.burstTime);
             
-            // Calculate energy consumption
+            // Calculate energy consumptionn
             double energy = computeEnergy(frequency, process.burstTime);
 
             // Update time and total energy
