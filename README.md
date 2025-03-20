@@ -7,11 +7,11 @@ The project aims to design and implement a CPU scheduling algorithm that optimiz
 ---
 
 ## 🚀 Key Features
-✅ Dynamic Task Prioritization: Adjusts scheduling priorities based on CPU load and energy consumption. 
-✅ Low-Power State Utilization: Efficiently places the CPU in low-power states during idle times. 
-✅ Adaptive Scheduling Mechanism: Uses real-time workload analysis to balance performance and energy efficiency.  
-✅ Energy-Aware Time Quantum: Dynamically adjusts time slices based on task complexity and energy metrics.
-✅ Multi-Core Optimization: Enhances scheduling for multi-core processors to distribute workloads efficiently.
+✅ Dynamic Task Prioritization: Adjusts scheduling priorities based on CPU load and energy consumption.    
+✅ Low-Power State Utilization: Efficiently places the CPU in low-power states during idle times.   
+✅ Adaptive Scheduling Mechanism: Uses real-time workload analysis to balance performance and energy efficiency.    
+✅ Energy-Aware Time Quantum: Dynamically adjusts time slices based on task complexity and energy metrics.   
+✅ Multi-Core Optimization: Enhances scheduling for multi-core processors to distribute workloads efficiently.   
 
 ---
 
