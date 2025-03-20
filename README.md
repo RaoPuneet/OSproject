@@ -1,5 +1,5 @@
 ﻿
-# **Real-Time Process Monitor**
+# **Energy-Efficient CPU Scheduling Algorithm**
 
 ## 📌 Project Overview
 The project aims to design and implement a CPU scheduling algorithm that optimizes power consumption while maintaining system performance. Traditional CPU scheduling algorithms focus on fairness, turnaround time, and throughput, but they often ignore energy efficiency. This project introduces a novel or improved scheduling technique to reduce power consumption in modern computing environments, particularly for battery-powered devices and data centers.
