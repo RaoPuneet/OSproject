@@ -1,66 +1,70 @@
 import java.util.*;
 
-class Process {
-    int pid, arrivalTime, burstTime;
+class Task {
+    String name;
+    int executionTime;
+    int priority;
+    double energyConsumption;
 
-    Process(int pid, int arrivalTime, int burstTime) {
-        this.pid = pid;
-        this.arrivalTime = arrivalTime;
-        this.burstTime = burstTime;
+    public Task(String name, int executionTime, int priority) {
+        this.name = name;
+        this.executionTime = executionTime;
+        this.priority = priority;
+        this.energyConsumption = 0;
     }
 }
 
-public class EnergyAwareSchedulerr {
+class EnergyEfficientScheduler {
+    private PriorityQueue<Task> taskQueue;
+    private double cpuFrequency; // GHz
+    private double basePower = 50; // Base power in Watts
 
-    public static void scheduleProcesses(List<Process> processes) {
-        int currentTime = 0;
-        double totalEnergy = 0.0;
+    public EnergyEfficientScheduler() {
+        this.taskQueue = new PriorityQueue<>(Comparator.comparingInt(t -> -t.priority));
+        this.cpuFrequency = 2.5; // Default frequency in GHz
+    }
 
-        System.out.println("PID\tCompletion Time\tEnergy (J)");
+    public void addTask(Task task) {
+        taskQueue.add(task);
+    }
 
-        // Sort processes by burst time (Shortest Job First - SJF)
-        processes.sort(Comparator.comparingInt(p -> p.burstTime));
+    private double calculateEnergy(Task task) {
+        return basePower * (task.executionTime / cpuFrequency);
+    }
 
-        for (Process process : processes) {
-            // Ensure CPU waits for process arrival
-            if (currentTime < process.arrivalTime) {
-                currentTime = process.arrivalTime;
-            }
-
-            // Set frequenccy dynamically based on burst time
-            double frequency = determineFrequency(process.burstTime);
-            
-            // Calculate energy consumptionn
-            double energy = computeEnergy(frequency, process.burstTime);
-
-            // Update time and total energy
-            currentTime += process.burstTime;
-            totalEnergy += energy;
-
-            System.out.printf("%d\t%d\t%.2f J\n", process.pid, currentTime, energy);
+    public void executeTasks() {
+        System.out.println("Executing Tasks with Energy-Efficient Scheduling...");
+        while (!taskQueue.isEmpty()) {
+            Task task = taskQueue.poll();
+            adjustCpuFrequency(task);
+            task.energyConsumption = calculateEnergy(task);
+            System.out.println("Executing " + task.name + " | Priority: " + task.priority + " | Execution Time: "
+                    + task.executionTime + " ms | Energy Used: " + String.format("%.2f", task.energyConsumption) + " J");
         }
-
-        System.out.printf("\nTotal Energy Consumption: %.2f J\n", totalEnergy);
     }
 
-    private static double determineFrequency(int burstTime) {
-        if (burstTime > 10) return 1.0;
-        if (burstTime > 5) return 2.0;
-        return 3.0;
+    private void adjustCpuFrequency(Task task) {
+        if (task.priority > 7) {
+            cpuFrequency = 3.5; // High priority -> Increase frequency
+        } else if (task.priority > 4) {
+            cpuFrequency = 2.5; // Medium priority -> Moderate frequency
+        } else {
+            cpuFrequency = 1.5; // Low priority -> Lower frequency to save energy
+        }
+        System.out.println("CPU Frequency adjusted to: " + cpuFrequency + " GHz");
     }
+}
 
-    private static double computeEnergy(double frequency, int burstTime) {
-        return 50 * Math.pow(frequency / 3.0, 2) * burstTime;
-    }
-
+public class EnergyEfficientCPUScheduler {
     public static void main(String[] args) {
-        List<Process> processList = Arrays.asList(
-            new Process(1, 0, 4),
-            new Process(2, 2, 12),
-            new Process(3, 4, 7),
-            new Process(4, 6, 3)
-        );
+        EnergyEfficientScheduler scheduler = new EnergyEfficientScheduler();
 
-        scheduleProcesses(processList);
+        scheduler.addTask(new Task("Task 1", 100, 8));
+        scheduler.addTask(new Task("Task 2", 150, 5));
+        scheduler.addTask(new Task("Task 3", 200, 3));
+        scheduler.addTask(new Task("Task 4", 120, 10));
+        scheduler.addTask(new Task("Task 5", 80, 6));
+
+        scheduler.executeTasks();
     }
 }
