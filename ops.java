@@ -47,7 +47,7 @@ class EnergyEfficientScheduler {
         if (task.priority > 7) {
             cpuFrequency = 3.5; // High priority -> Increase frequency
         } else if (task.priority > 4) {
-            cpuFrequency = 2.5; // Medium priority -> Moderate frequency
+            cpuFrequency = 2.5; // Medium priorjity -> Moderate frequency
         } else {
             cpuFrequency = 1.5; // Low priority -> Lower frequency to save energy
         }
