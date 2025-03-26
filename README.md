@@ -16,7 +16,7 @@ The project aims to design and implement a CPU scheduling algorithm that optimiz
 ---
 
 ## 🛠️ Technologies Used
-- Programming Language: java (for simulation) 
+- Programming Language: java and Python (for simulation) 
 - Simulation Tools: MATLAB, SimGrid, or CloudSim 
 - Operating System Concepts: Process scheduling, context switching, and power management
 - Energy Profiling Tools: Intel Power Gadget, Powertop
